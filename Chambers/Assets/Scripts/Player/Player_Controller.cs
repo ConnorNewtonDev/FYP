@@ -7,18 +7,26 @@ public class Player_Controller : MonoBehaviour
     //References
     private Animator anim;
     private Rigidbody rb3d;
+    private Camera_Controller camControl;
     //Variables
-    private Vector3 moveDir;
+    //Camera World View
+    private Vector3 forward;
+    private Vector3 right;
+    //Controls
     private float deadzone = 0.2f;
     private float lookSpeed = 8f;
-    private float speed = 3;
-    
+    private float speed = 3.25f;
+    private Vector3 moveDir;
+
 
     void Start()
     {
         //Get Components
         anim = GetComponent<Animator>();
         rb3d = GetComponent<Rigidbody>();
+
+        //Get and Setup Camera to Follow
+        SetupCamera();
     }
 
     // Update is called once per frame
@@ -33,6 +41,20 @@ public class Player_Controller : MonoBehaviour
         Move();
     }
 
+    private void SetupCamera()
+    {
+        camControl = FindObjectOfType<Camera_Controller>();
+        camControl.TargetObject(this.gameObject);
+
+        forward = camControl.transform.forward;
+        right = camControl.transform.right;
+
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+    }
+
     private void Move()
     {
         rb3d.velocity = moveDir * speed;
@@ -42,11 +64,10 @@ public class Player_Controller : MonoBehaviour
         anim.SetFloat("Turn", localVelocity.x);
     }
 
-    private void Look(Vector3 moveDir)
+    private void Look(Vector3 joystickInput)
     {
-            Vector3 _dir = (moveDir - this.transform.position).normalized;
-            Quaternion _lookDir = Quaternion.LookRotation(_dir);
-            transform.rotation = _lookDir;
+        Vector3 rotDir = new Vector3(this.transform.eulerAngles.x, Mathf.Atan2(joystickInput.x, joystickInput.z) * Mathf.Rad2Deg, this.transform.eulerAngles.z);
+        this.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotDir), lookSpeed * Time.deltaTime);
     }
 
     private void HandleInput()
@@ -61,13 +82,10 @@ public class Player_Controller : MonoBehaviour
         else
         {
             moveDir = joystickInput.normalized * ((joystickInput.magnitude - deadzone) / (1 - deadzone));
-            Vector3 rotDir = new Vector3(this.transform.eulerAngles.x, Mathf.Atan2(joystickInput.x, joystickInput.z) * Mathf.Rad2Deg, this.transform.eulerAngles.z);
-            this.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotDir), lookSpeed * Time.deltaTime);
-        }
-
-
-        //Look
-     
+            camControl.transform.InverseTransformDirection(moveDir);
+            Look(joystickInput);
+            
+        }    
 
     }
 }

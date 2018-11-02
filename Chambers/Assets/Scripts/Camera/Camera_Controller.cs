@@ -8,17 +8,20 @@ public class Camera_Controller : MonoBehaviour
     [SerializeField]
     private Transform target;
     private Vector3 offset = new Vector3(1f, -7, 6);
+    private Vector3 defaultRot = new Vector3(50, 15, 0);
     [SerializeField]
     private float dampening;
+
     // Start is called before the first frame update
     void Start()
     {
-        TargetObject(GameObject.Find("Player"));
+        //TargetObject(GameObject.Find("Player"));
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        if (target != null)
         this.transform.position = Vector3.Lerp(this.transform.position, (target.position - offset), dampening);
     }
 
@@ -26,6 +29,7 @@ public class Camera_Controller : MonoBehaviour
     public void TargetObject(GameObject _target)
     {
         target = _target.transform;
+        this.transform.rotation = Quaternion.Euler(defaultRot);
     }
 
 }
