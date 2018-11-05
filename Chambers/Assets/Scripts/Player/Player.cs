@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private List<GameObject> interactables;
+    public List<GameObject> interactables;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        interactables = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -21,8 +21,16 @@ public class Player : MonoBehaviour
 
     void TryInteract()
     {
-        interactables[0].GetComponent<Interactable>().Behaviour();
-        interactables.RemoveAt(0);
+        interactables[0].GetComponent<Interactable>().Action();
+
+        if(!interactables[0].GetComponent<Interactable>().destroyOnUse)
+        {
+            //Make sure not stuck in loop of only using 1 item, puts to back of list if multiple in range.
+            interactables.Add(interactables[0]);
+            interactables.RemoveAt(0);
+
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
