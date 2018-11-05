@@ -9,14 +9,7 @@ public class Camera_Controller : MonoBehaviour
     private Transform target;
     private Vector3 offset = new Vector3(1f, -7, 6);
     private Vector3 defaultRot = new Vector3(50, 15, 0);
-    [SerializeField]
-    private float dampening;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //TargetObject(GameObject.Find("Player"));
-    }
+    private float dampening = 15f;
 
     // Update is called once per frame
     void LateUpdate()
