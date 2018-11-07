@@ -13,7 +13,7 @@ public class Player_Movement : MonoBehaviour
     private Vector3 forward;
     private Vector3 right;
     //Controls
-    public bool inControl { private get; set; }
+    public bool inControl;
     private float deadzone = 0.2f;
     private float lookSpeed = 8f;
     private float speed = 3.25f;
