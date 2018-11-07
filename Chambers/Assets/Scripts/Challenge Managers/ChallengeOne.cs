@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChallengeOne : MonoBehaviour
+public class ChallengeOne : ChallengeBase
 {
     public GameObject path;
     public GameObject dissolvePath;
@@ -10,7 +10,6 @@ public class ChallengeOne : MonoBehaviour
     public GameObject dissolveParent;
 
     private int[,] pathLayout;
-    public bool _hardMode;
     public Transform spawnLoc;
 
     // Start is called before the first frame update
