@@ -37,10 +37,9 @@ public class Dissolve : MonoBehaviour
     }
 
 
-    private IEnumerator ToggleDisolve(float target)
+    public IEnumerator ToggleDisolve(float target)
     {
         float elapsedTime = 0f;
-        Debug.Log("AHA");
         while (elapsedTime < 3f)
         {
             rend.material.SetFloat("_alphaClip", Mathf.Lerp(rend.material.GetFloat("_alphaClip"), target, (elapsedTime / 3f)));

@@ -13,6 +13,7 @@ public class Player_Movement : MonoBehaviour
     private Vector3 forward;
     private Vector3 right;
     //Controls
+    public bool inControl { private get; set; }
     private float deadzone = 0.2f;
     private float lookSpeed = 8f;
     private float speed = 3.25f;
@@ -27,6 +28,7 @@ public class Player_Movement : MonoBehaviour
 
         //Get and Setup Camera to Follow
         SetupCamera();
+        inControl = true;
     }
 
     // Update is called once per frame
@@ -38,7 +40,15 @@ public class Player_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (inControl)
+            Move();
+        else
+        {
+            rb3d.velocity = Vector3.zero;
+            anim.SetFloat("Forward", 0);
+            anim.SetFloat("Turn", 0);
+        }
+
     }
 
     private void SetupCamera()
