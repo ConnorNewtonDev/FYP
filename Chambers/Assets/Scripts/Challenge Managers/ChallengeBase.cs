@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class ChallengeBase : MonoBehaviour
 {
-    public bool _hardMode;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool hardMode;
+    public int hardReward;
+    public int hardPenalty;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual void Init() { }
 }

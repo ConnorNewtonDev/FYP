@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class DifficultyUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject activeChallenge;
+    private Player_Movement pMovement;
+
+    private void Start()
     {
-        
+        pMovement = FindObjectOfType<Player_Movement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StandardBtn()
     {
-        
+        activeChallenge.GetComponent<ChallengeBase>().hardMode = false;
+        activeChallenge.GetComponent<ChallengeBase>().Init();
+        pMovement.inControl = true;
+        Disable();
+    }
+
+    public void HardmodeBtn()
+    {
+        activeChallenge.GetComponent<ChallengeBase>().hardMode = true;
+        activeChallenge.GetComponent<ChallengeBase>().Init();
+        pMovement.inControl = true;
+        Disable();
+    }
+
+    private void Disable()
+    {
+        this.gameObject.SetActive(false);
     }
 }

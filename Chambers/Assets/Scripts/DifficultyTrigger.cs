@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DifficultyTrigger : MonoBehaviour
 {
-    public GameObject Challenge;
+    public GameObject challenge;
 
     private Player_Movement pMovement;
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class DifficultyTrigger : MonoBehaviour
             pMovement = other.GetComponent<Player_Movement>();
             pMovement.inControl = false;
 
-
+            FindObjectOfType<Camera_Controller>().EnableChoiceUI(challenge);
         }
     }
 }

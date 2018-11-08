@@ -13,9 +13,9 @@ public class ChallengeOne : ChallengeBase
     public Transform spawnLoc;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
-        if (_hardMode)
+        if (hardMode)
             LoadHardPath();
         else
             LoadNormalPath();

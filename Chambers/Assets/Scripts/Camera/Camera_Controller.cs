@@ -10,6 +10,13 @@ public class Camera_Controller : MonoBehaviour
     private Vector3 offset = new Vector3(1f, -7, 6);
     private Vector3 defaultRot = new Vector3(50, 15, 0);
     private float dampening = 15f;
+    private GameObject uiPanel;
+
+    private void Start()
+    {
+        uiPanel = GameObject.Find("UI Panel");
+        uiPanel.SetActive(false);
+    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -24,5 +31,14 @@ public class Camera_Controller : MonoBehaviour
         target = _target.transform;
         this.transform.rotation = Quaternion.Euler(defaultRot);
     }
+
+    public void EnableChoiceUI(GameObject _challenge)
+    {
+        uiPanel.SetActive(true);
+        uiPanel.GetComponent<DifficultyUI>().activeChallenge = _challenge;
+    }
+
+
+
 
 }

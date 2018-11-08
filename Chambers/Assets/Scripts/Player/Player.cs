@@ -6,15 +6,13 @@ public class Player : MonoBehaviour
 {
     public List<GameObject> interactables;
     private Player_Movement pMovement;
-    private GameObject uiPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         pMovement = GetComponent<Player_Movement>();
         interactables = new List<GameObject>();
-        uiPanel = GameObject.Find("UI Panel");
-        uiPanel.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -48,4 +46,7 @@ public class Player : MonoBehaviour
 
         }
     }
+
+
+
 }
