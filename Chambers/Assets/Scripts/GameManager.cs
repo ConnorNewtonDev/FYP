@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
     private bool[] _hardmodeChoice = new bool[10];
 
     // Start is called before the first frame update

@@ -14,7 +14,7 @@ public class DifficultyUI : MonoBehaviour
 
     public void StandardBtn()
     {
-        activeChallenge.GetComponent<ChallengeBase>().hardMode = false;
+        activeChallenge.GetComponent<ChallengeBase>().SetHardMode(false);
         activeChallenge.GetComponent<ChallengeBase>().Init();
         pMovement.inControl = true;
         Disable();
@@ -22,7 +22,7 @@ public class DifficultyUI : MonoBehaviour
 
     public void HardmodeBtn()
     {
-        activeChallenge.GetComponent<ChallengeBase>().hardMode = true;
+        activeChallenge.GetComponent<ChallengeBase>().SetHardMode(true);
         activeChallenge.GetComponent<ChallengeBase>().Init();
         pMovement.inControl = true;
         Disable();

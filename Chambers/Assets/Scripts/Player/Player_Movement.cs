@@ -63,13 +63,16 @@ public class Player_Movement : MonoBehaviour
         right.y = 0;
         forward.Normalize();
         right.Normalize();
+
     }
 
     private void Move()
     {
         rb3d.velocity = moveDir * speed;
+        //Get the velocity of the player relative to the direction facing
         Vector3 localVelocity = transform.InverseTransformDirection(rb3d.velocity);
         Vector3.Normalize(localVelocity);
+        //Apply values for blend tree
         anim.SetFloat("Forward", localVelocity.z);
         anim.SetFloat("Turn", localVelocity.x);
     }
@@ -91,8 +94,7 @@ public class Player_Movement : MonoBehaviour
         }
         else
         {
-            moveDir = joystickInput.normalized * ((joystickInput.magnitude - deadzone) / (1 - deadzone));
-            camControl.transform.InverseTransformDirection(moveDir);
+            moveDir = joystickInput.normalized/* * ((joystickInput.magnitude - deadzone) / (1 - deadzone))*/;
             Look(joystickInput);
             
         }    

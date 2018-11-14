@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Player : MonoBehaviour
 {
     public List<GameObject> interactables;
@@ -18,7 +17,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Action") && pMovement.inControl == true)
+
+        if (Input.GetButtonDown("Action") && pMovement.inControl == true && interactables.Count != 0)
             TryInteract();
     }
 
@@ -44,6 +44,16 @@ public class Player : MonoBehaviour
                     interactables.Add(other.gameObject);
                     break;
 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        switch(other.tag)
+        {
+            case "Interactable":
+                    interactables.Remove(other.gameObject);
+                    break;
         }
     }
 

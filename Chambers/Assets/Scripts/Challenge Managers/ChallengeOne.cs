@@ -15,7 +15,7 @@ public class ChallengeOne : ChallengeBase
     // Start is called before the first frame update
     public override void Init()
     {
-        if (hardMode)
+        if (base.GetHardMode())
             LoadHardPath();
         else
             LoadNormalPath();

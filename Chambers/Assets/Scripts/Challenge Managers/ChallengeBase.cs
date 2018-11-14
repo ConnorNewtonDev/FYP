@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class ChallengeBase : MonoBehaviour
 {
-    public bool hardMode;
+    private bool hardMode;
     public int hardReward;
     public int hardPenalty;
+    public int challengeID;
+
+    public GameManager gM;
+
+    private void Start()
+    {
+        gM = FindObjectOfType<GameManager>();
+    }
 
     public virtual void Init() { }
+
+    public void SetHardMode(bool _value)
+    {
+        hardMode = _value;
+        gM.SetHardmodeChoice(challengeID, hardMode);
+    }
+
+    public bool GetHardMode()
+    { return hardMode; }
 }
