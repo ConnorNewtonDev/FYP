@@ -8,8 +8,8 @@ public class ChallengeBase : MonoBehaviour
     public int hardReward;
     public int hardPenalty;
     public int challengeID;
-
-    public GameManager gM;
+    [SerializeField]
+    private GameManager gM;
 
     private void Start()
     {
