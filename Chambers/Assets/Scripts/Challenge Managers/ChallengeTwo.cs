@@ -8,8 +8,10 @@ public class ChallengeTwo : ChallengeBase
     public GameObject[] flameSpawners;
 
     private bool leftSpawn = true;
+    public bool spawning = false;
 
-
+    public float curTimer = 0;
+    public float spawnTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +27,13 @@ public class ChallengeTwo : ChallengeBase
         else
             LoadStandard();           //Activate Boulders
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void LoadHardMode()
     {
-        float diff = 1.25f;
+        float diff = 2.5f;
         int index = 1;
         foreach (GameObject spawner in flameSpawners)
         {
-            //spawner.GetComponent<Spawner>().enabled = true;
             spawner.GetComponent<Spawner>().SetStartCurTimer(diff * index);
             index++;
         }
@@ -48,11 +44,10 @@ public class ChallengeTwo : ChallengeBase
 
     private void LoadStandard()
     {
-        float diff = 2f;
+        float diff = 3f;
         int index = 1;
         foreach (GameObject spawner in boulderSpawners)
         {
-            //spawner.GetComponent<Spawner>().enabled = true;
             spawner.GetComponent<Spawner>().SetStartCurTimer(diff * index);
             index++;
         }
