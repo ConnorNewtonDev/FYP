@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
     {
         curTimer = spawnTimer;
 
-        GameObject obj = Instantiate(spawnObject, this.transform.position, this.transform.rotation);
+        GameObject obj = Instantiate(spawnObject, this.transform.position, this.transform.rotation, this.transform);
         
         if(hasDirection)
             obj.GetComponent<Rigidbody>().AddForce(VaryForce(forceDirection, forceVariance));

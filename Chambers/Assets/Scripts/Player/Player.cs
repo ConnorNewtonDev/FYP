@@ -44,6 +44,9 @@ public class Player : MonoBehaviour
             case "Interactable":
                     interactables.Add(other.gameObject);
                     break;
+            case "DestroyPlayer":
+                    DestroySequence();
+                    break;
 
         }
     }
@@ -58,9 +61,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if(collision.gameObject.tag == "DestroyPlayer")
+
+        if(other.gameObject.tag == "DestroyPlayer")
+        {
+            DestroySequence();
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.tag == "DestroyPlayer")
         {
             DestroySequence();
         }
