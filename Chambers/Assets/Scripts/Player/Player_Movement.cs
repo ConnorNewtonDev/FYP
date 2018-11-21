@@ -100,4 +100,10 @@ public class Player_Movement : MonoBehaviour
         }    
 
     }
+
+    public void DeathScreen()
+    {
+        GameObject panel = camControl.deathPanel;
+        camControl.StartCoroutine(camControl.FadeUI(panel, 0, 1));
+    }
 }

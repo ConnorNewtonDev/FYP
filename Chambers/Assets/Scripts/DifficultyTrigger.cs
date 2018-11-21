@@ -21,7 +21,8 @@ public class DifficultyTrigger : MonoBehaviour
             pMovement = other.GetComponent<Player_Movement>();
             pMovement.inControl = false;
 
-            FindObjectOfType<Camera_Controller>().EnableChoiceUI(challenge);
+            FindObjectOfType<Camera_Controller>().ToggleChoiceUI(challenge);
+            Destroy(this.gameObject);
         }
     }
 }

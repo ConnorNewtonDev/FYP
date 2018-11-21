@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChallengeBase : MonoBehaviour
 {
@@ -8,6 +6,7 @@ public class ChallengeBase : MonoBehaviour
     public int hardReward;
     public int hardPenalty;
     public int challengeID;
+    public Transform playerSpawn;
     [SerializeField]
     private GameManager gM;
 
@@ -22,6 +21,11 @@ public class ChallengeBase : MonoBehaviour
     {
         hardMode = _value;
         gM.SetHardmodeChoice(challengeID, hardMode);
+    }
+
+    public void SetActiveRespawn(Transform _spawnLoc)
+    {
+        gM.respawnLoc = _spawnLoc;
     }
 
     public bool GetHardMode()

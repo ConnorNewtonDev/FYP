@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4680690401920539425}
   - component: {fileID: 4680690401920539424}
   - component: {fileID: 4680690401920539427}
+  - component: {fileID: 3501559100175407183}
   m_Layer: 0
   m_Name: Boulder
-  m_TagString: Untagged
+  m_TagString: DestroyPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,3 +109,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3501559100175407183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4680690401920539426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9644e2f5822c50649b0e9f146c0763e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

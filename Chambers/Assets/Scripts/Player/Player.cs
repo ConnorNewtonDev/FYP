@@ -5,13 +5,14 @@ public class Player : MonoBehaviour
 {
     public List<GameObject> interactables;
     private Player_Movement pMovement;
+    public GameManager gM;
+
 
     // Start is called before the first frame update
     void Start()
     {
         pMovement = GetComponent<Player_Movement>();
         interactables = new List<GameObject>();
-
     }
 
     // Update is called once per frame
@@ -57,6 +58,32 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "DestroyPlayer")
+        {
+            DestroySequence();
+        }
+    }
 
+    private void DestroySequence()
+    {
+        pMovement.inControl = false;
+        if (gM.life == 1)
+        {
+            pMovement.DeathScreen();
+        }
+        else
+        {
+            gM.life--;     
+            pMovement.DeathScreen();
+            gM.StartCoroutine(gM.Spawn(3));                        //Spawn player in 3 seconds
+            Destroy(this.gameObject);                              //Delete player behind screen
+                                                                   //Make it look good
+        }
+
+
+
+    }
 
 }

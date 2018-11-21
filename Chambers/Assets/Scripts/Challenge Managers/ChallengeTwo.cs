@@ -1,31 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChallengeTwo : ChallengeBase
 {
     public GameObject[] boulderSpawners;
     public GameObject[] flameSpawners;
-
-    private bool leftSpawn = true;
-    public bool spawning = false;
-
-    public float curTimer = 0;
-    public float spawnTime;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    
 
     public override void Init()
     {
-        if (base.GetHardMode())
-        {
-            LoadHardMode();           //Activate Flamethrowers
-        }
+        if(base.GetHardMode())
+            LoadHardMode();           //Activate Flamethrowers        
         else
             LoadStandard();           //Activate Boulders
+
+        base.SetActiveRespawn(playerSpawn);
     }
 
     private void LoadHardMode()
@@ -34,7 +22,7 @@ public class ChallengeTwo : ChallengeBase
         int index = 1;
         foreach (GameObject spawner in flameSpawners)
         {
-            spawner.GetComponent<Spawner>().SetStartCurTimer(diff * index);
+            spawner.GetComponentInChildren<Spawner>().Init(diff * index);
             index++;
         }
 
@@ -48,7 +36,7 @@ public class ChallengeTwo : ChallengeBase
         int index = 1;
         foreach (GameObject spawner in boulderSpawners)
         {
-            spawner.GetComponent<Spawner>().SetStartCurTimer(diff * index);
+            spawner.GetComponent<Spawner>().Init(diff * index);
             index++;
         }
 

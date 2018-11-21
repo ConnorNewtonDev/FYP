@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    private float spawnTimer;
-    private float curTimer;
-    public GameObject spawnObject;
-    public bool hasDirection;
-
+    public SpawnerType spawnType;
     public Vector3 forceDirection;
     public Vector3 forceVariance;
-
     public bool spawning = false;
+
+    private float spawnTimer;
+    private float curTimer;
+    private bool hasDirection;
+    private GameObject spawnObject;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,16 +40,27 @@ public class Spawner : MonoBehaviour
     {
         curTimer = spawnTimer;
 
-        GameObject obj = Instantiate(spawnObject, this.transform.position, Quaternion.identity, null);
-        Destroy(obj, 10f);
+        GameObject obj = Instantiate(spawnObject, this.transform.position, this.transform.rotation);
+        
         if(hasDirection)
             obj.GetComponent<Rigidbody>().AddForce(VaryForce(forceDirection, forceVariance));
     }
 
-    public void SetStartCurTimer(float time)
+    public void Init(float time)
     {
-        curTimer += time;
-        spawning = true;
+        spawnTimer = spawnType.spawnRate;
+        spawnObject = spawnType.spawnObject;
+        hasDirection = spawnType.hasDirection;
+
+        if(spawnType.oneTimeSpawn)
+        {
+            Spawn();
+        }
+        else
+        {
+            curTimer += time;
+            spawning = true;
+        }
     }
 
     private Vector3 VaryForce(Vector3 _forceDir, Vector3 _variance)
