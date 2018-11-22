@@ -6,9 +6,11 @@ public class ChallengeBase : MonoBehaviour
     public int hardReward;
     public int hardPenalty;
     public int challengeID;
+    public Transform spawnParent;
     public Transform playerSpawn;
     [SerializeField]
     private GameManager gM;
+
 
     private void Start()
     {

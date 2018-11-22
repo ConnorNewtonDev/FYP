@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public List<GameObject> interactables;
@@ -83,7 +84,10 @@ public class Player : MonoBehaviour
         pMovement.inControl = false;
         if (gM.life == 1)
         {
+            gM.life--;
             pMovement.DeathScreen();
+            //Reload --- still to decide here what to do
+            gM.LoadScene(SceneManager.GetActiveScene());
         }
         else
         {

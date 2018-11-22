@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     private float curTimer;
     private bool hasDirection;
     private GameObject spawnObject;
+    private Transform spawnParent;
 
 
 
@@ -40,17 +41,18 @@ public class Spawner : MonoBehaviour
     {
         curTimer = spawnTimer;
 
-        GameObject obj = Instantiate(spawnObject, this.transform.position, this.transform.rotation, this.transform);
+        GameObject obj = Instantiate(spawnObject, this.transform.position, this.transform.rotation, spawnParent);
         
         if(hasDirection)
             obj.GetComponent<Rigidbody>().AddForce(VaryForce(forceDirection, forceVariance));
     }
 
-    public void Init(float time)
+    public void Init(float _time, Transform _parent)
     {
         spawnTimer = spawnType.spawnRate;
         spawnObject = spawnType.spawnObject;
         hasDirection = spawnType.hasDirection;
+        spawnParent = _parent;
 
         if(spawnType.oneTimeSpawn)
         {
@@ -58,7 +60,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            curTimer += time;
+            curTimer += _time;
             spawning = true;
         }
     }

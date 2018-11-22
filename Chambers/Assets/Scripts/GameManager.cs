@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     public void SetHardmodeChoice(int loc, bool value)
     {
         _hardmodeChoice[loc] = value;
+    }
+
+    public void LoadScene(Scene _scene)
+    {
+        SceneManager.LoadScene(_scene.name);
     }
 
     public IEnumerator Spawn(float _waitTime)

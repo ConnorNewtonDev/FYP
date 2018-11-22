@@ -22,7 +22,7 @@ public class ChallengeTwo : ChallengeBase
         int index = 1;
         foreach (GameObject spawner in flameSpawners)
         {
-            spawner.GetComponentInChildren<Spawner>().Init(diff * index);
+            spawner.GetComponentInChildren<Spawner>().Init(diff * index, base.spawnParent);
             index++;
         }
 
@@ -36,7 +36,7 @@ public class ChallengeTwo : ChallengeBase
         int index = 1;
         foreach (GameObject spawner in boulderSpawners)
         {
-            spawner.GetComponent<Spawner>().Init(diff * index);
+            spawner.GetComponent<Spawner>().Init(diff * index, base.spawnParent);
             index++;
         }
 
