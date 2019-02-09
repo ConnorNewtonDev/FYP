@@ -62,9 +62,9 @@ public class Camera_Controller : MonoBehaviour
         float elapsedTime = 0;
         panelCG.alpha = _alphaStart;
 
-        while (elapsedTime < 1f)
+        while (elapsedTime < 0.5f)
         {
-            panelCG.alpha = Mathf.Lerp(panelCG.alpha, _alphaFinish, (elapsedTime / 1f));
+            panelCG.alpha = Mathf.Lerp(panelCG.alpha, _alphaFinish, (elapsedTime / 0.5f));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     {
         pMovement = GetComponent<Player_Movement>();
         interactables = new List<GameObject>();
+        gM = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -82,20 +83,22 @@ public class Player : MonoBehaviour
     private void DestroySequence()
     {
         pMovement.inControl = false;
+        pMovement.DeathScreen();
+        this.transform.GetComponent<CapsuleCollider>().enabled = false;
+        this.GetComponent<AudioSource>().Play();
+        Destroy(this.gameObject, 2.5f);                              //Delete player behind screen
+
         if (gM.life == 1)
-        {
-            gM.life--;
-            pMovement.DeathScreen();
+        {          
+            gM.life -= 1;
             //Reload --- still to decide here what to do
-            gM.LoadScene(SceneManager.GetActiveScene());
+            //gM.LoadScene(SceneManager.GetActiveScene());
         }
         else
         {
-            gM.life--;     
-            pMovement.DeathScreen();
-            gM.StartCoroutine(gM.Spawn(3));                        //Spawn player in 3 seconds
-            Destroy(this.gameObject);                              //Delete player behind screen
-                                                                   //Make it look good
+            gM.StartCoroutine(gM.Spawn(5));                        //Spawn player in 3 seconds
+
+            gM.life -= 1;
         }
 
 
