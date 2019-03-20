@@ -6,14 +6,13 @@ public class ChallengeTwo : ChallengeBase
     public GameObject[] flameSpawners;
     
 
-    public override void Init()
+    void Start()
     {
-        if(base.GetHardMode())
+        if(base.GetHardMode(2))
             LoadHardMode();           //Activate Flamethrowers        
         else
             LoadStandard();           //Activate Boulders
 
-        base.SetActiveRespawn(playerSpawn);
     }
 
     private void LoadHardMode()

@@ -4,32 +4,48 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool[] _hardmodeChoice = new bool[10];
-    public Transform respawnLoc;
+    private static GameManager instance = null;
+    public bool[] hardmodeChoice = new bool[5];
+    public int activeChallenge = 0;
     public GameObject playerPrefab;
     public Camera_Controller cameraController;
+    public Transform respawnLoc;
     public int life;
 
+
+
+    private void Awake()
+    {
+        if (instance == null)
+          { 
+               instance = this;
+               DontDestroyOnLoad(gameObject);
+               return;
+          }
+          if (instance == this) return; 
+          Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
-    {
+    {     
         cameraController = Camera.main.GetComponent<Camera_Controller>();
-        StartCoroutine(Spawn(0));
         life = 3;
     }
 
-    public void SetHardmodeChoice(int loc, bool value)
+    public void LoadNextScene(bool hardMode)
     {
-        _hardmodeChoice[loc] = value;
-    }
+        hardmodeChoice[activeChallenge] = hardMode;
+        SceneManager.LoadScene(activeChallenge + 1);
+    }  
 
-    public void LoadScene(Scene _scene)
+    public void LoadScene(int index)
     {
-        SceneManager.LoadScene(_scene.name);
+        SceneManager.LoadScene(index);
     }
 
     public IEnumerator Spawn(float _waitTime)
     {
+        Debug.Log("HIT");
         yield return new WaitForSeconds(_waitTime);
         GameObject player =  Instantiate(playerPrefab, respawnLoc.position, respawnLoc.rotation, null);
         player.name = "Player";

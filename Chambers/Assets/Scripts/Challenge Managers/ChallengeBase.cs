@@ -1,35 +1,32 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 public class ChallengeBase : MonoBehaviour
 {
-    private bool hardMode;
-    public int hardReward;
-    public int hardPenalty;
-    public int challengeID;
     public Transform spawnParent;
     public Transform playerSpawn;
     [SerializeField]
-    private GameManager gM;
+    public GameManager gM;
 
 
-    private void Start()
+    public virtual void Start()
     {
         gM = FindObjectOfType<GameManager>();
+        gM.cameraController = FindObjectOfType<Camera_Controller>();
     }
 
-    public virtual void Init() { }
+    public bool GetHardMode(int index)
+    { return gM.hardmodeChoice[index]; }
 
-    public void SetHardMode(bool _value)
+    public IEnumerator Spawn(float _waitTime)
     {
-        hardMode = _value;
-        gM.SetHardmodeChoice(challengeID, hardMode);
+        Debug.Log("HIT");
+        yield return new WaitForSeconds(_waitTime);
+        GameObject player =  Instantiate(gM.playerPrefab, playerSpawn.position, playerSpawn.rotation, null);
+        player.name = "Player";
+        player.GetComponent<Player>().gM = this.GetComponent<GameManager>();
+        //Check if respawning & death panel still active
+        if(gM.cameraController.deathPanel.activeInHierarchy)
+            gM.cameraController.StartCoroutine(gM.cameraController.FadeUI(gM.cameraController.deathPanel, 1, 0));
+        
     }
-
-    public void SetActiveRespawn(Transform _spawnLoc)
-    {
-        gM.respawnLoc = _spawnLoc;
-    }
-
-    public bool GetHardMode()
-    { return hardMode; }
 }

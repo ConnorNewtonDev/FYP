@@ -11,16 +11,19 @@ public class ChallengeOne : ChallengeBase
     public Transform spawnLoc;
 
     // Start is called before the first frame update
-    public override void Init()
-    {
-        if (base.GetHardMode())
+    public override void Start()
+    {           
+        base.Start();
+
+        if (base.GetHardMode(1))
             LoadHardPath();
         else
             LoadNormalPath();
 
 
         SpawnPath();
-        base.SetActiveRespawn(playerSpawn);
+
+        StartCoroutine(base.Spawn(0));
     }
 
     private void SpawnPath()

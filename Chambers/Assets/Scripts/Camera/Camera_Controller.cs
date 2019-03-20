@@ -17,12 +17,9 @@ public class Camera_Controller : MonoBehaviour
     private void Start()
     {
         //SetupPanels
-        uiPanel = GameObject.Find("UI Panel");
         deathPanel = GameObject.Find("Death Panel");
-        uiPanel.GetComponent<CanvasGroup>().alpha = 0;
         deathPanel.GetComponent<CanvasGroup>().alpha = 0;
         deathPanel.SetActive(false);
-        uiPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,15 +35,6 @@ public class Camera_Controller : MonoBehaviour
         target = _target.transform;
         this.transform.rotation = Quaternion.Euler(defaultRot);
     }
-
-    public void ToggleChoiceUI(GameObject _challenge)
-    {
-
-        uiPanel.GetComponent<DifficultyUI>().activeChallenge = _challenge;
-
-        StartCoroutine(FadeUI(uiPanel, 0, 1));
-    }
-
     public IEnumerator FadeUI(GameObject _panel, float _alphaStart, float _alphaFinish)
     {
         CanvasGroup panelCG = _panel.GetComponent<CanvasGroup>();

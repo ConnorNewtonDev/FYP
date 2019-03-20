@@ -92,12 +92,10 @@ public class Player : MonoBehaviour
         {          
             gM.life -= 1;
             //Reload --- still to decide here what to do
-            //gM.LoadScene(SceneManager.GetActiveScene());
+            gM.LoadScene(0);
         }
         else
         {
-            gM.StartCoroutine(gM.Spawn(5));                        //Spawn player in 3 seconds
-
             gM.life -= 1;
         }
 

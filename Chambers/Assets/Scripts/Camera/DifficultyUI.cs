@@ -1,34 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DifficultyUI : MonoBehaviour
 {
-    public GameObject activeChallenge;
+    private GameManager gameManager;
     private Player_Movement pMovement;
     private Camera_Controller cameraController;
 
     private void Start()
     {
-        pMovement = FindObjectOfType<Player_Movement>();
-        cameraController = Camera.main.GetComponent<Camera_Controller>();
-    }
+        gameManager = FindObjectOfType<GameManager>();
+    }       
 
     public void StandardBtn()
     {
-        activeChallenge.GetComponent<ChallengeBase>().SetHardMode(false);
-        activeChallenge.GetComponent<ChallengeBase>().Init();
-        pMovement.inControl = true;
-        //Fade UI Out
-        StartCoroutine(cameraController.FadeUI(this.gameObject, 1, 0));
+        gameManager.LoadNextScene(false);
     }
 
     public void HardmodeBtn()
     {
-        activeChallenge.GetComponent<ChallengeBase>().SetHardMode(true);
-        activeChallenge.GetComponent<ChallengeBase>().Init();
-        pMovement.inControl = true;
-        //Fade UI Out
-        StartCoroutine(cameraController.FadeUI(this.gameObject, 1, 0));
+        gameManager.LoadNextScene(true);
     }
 }
