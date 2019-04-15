@@ -4,47 +4,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-    public List<GameObject> interactables;
     private Player_Movement pMovement;
     public GameManager gM;
+    public delegate void InteractDel();
+    public event InteractDel interactEvent;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         pMovement = GetComponent<Player_Movement>();
-        interactables = new List<GameObject>();
         gM = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetButtonDown("Action") && pMovement.inControl == true && interactables.Count != 0)
+        if (Input.GetButtonDown("Action") && pMovement.inControl == true)
             TryInteract();
     }
 
     void TryInteract()
     {
-        interactables[0].GetComponent<Interactable>().Action();
-
-        if(!interactables[0].GetComponent<Interactable>().destroyOnUse)
-        {
-            //Make sure not stuck in loop of only using 1 item, puts to back of list if multiple in range.
-            interactables.Add(interactables[0]);
-            interactables.RemoveAt(0);
-
-        }
-
+        if(interactEvent != null)
+            interactEvent();        
     }
 
+#region Collision
     private void OnTriggerEnter(Collider other)
     {
         switch(other.tag)
         {
             case "Interactable":
-                    interactables.Add(other.gameObject);
+                    //interactables.Add(other.gameObject);
+                    interactEvent += other.GetComponent<Interactable>().Action;
                     break;
             case "DestroyPlayer":
                     DestroySequence();
@@ -58,7 +48,9 @@ public class Player : MonoBehaviour
         switch(other.tag)
         {
             case "Interactable":
-                    interactables.Remove(other.gameObject);
+                    //interactables.Remove(other.gameObject);
+                    interactEvent -= other.GetComponent<Interactable>().Action;
+                    other.GetComponent<Interactable>().EndAction();
                     break;
         }
     }
@@ -79,7 +71,8 @@ public class Player : MonoBehaviour
             DestroySequence();
         }
     }
-
+#endregion
+  
     private void DestroySequence()
     {
         pMovement.inControl = false;
