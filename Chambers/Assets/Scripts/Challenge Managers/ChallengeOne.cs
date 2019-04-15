@@ -14,7 +14,7 @@ public class ChallengeOne : ChallengeBase
     public override void Start()
     {           
         base.Start();
-
+        
         if (base.GetHardMode(1))
             LoadHardPath();
         else

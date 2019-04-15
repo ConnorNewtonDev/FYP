@@ -19,7 +19,6 @@ public class ChallengeBase : MonoBehaviour
 
     public IEnumerator Spawn(float _waitTime)
     {
-        Debug.Log("HIT");
         yield return new WaitForSeconds(_waitTime);
         GameObject player =  Instantiate(gM.playerPrefab, playerSpawn.position, playerSpawn.rotation, null);
         player.name = "Player";
