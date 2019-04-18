@@ -8,6 +8,7 @@ public class Player_Movement : MonoBehaviour
     private Animator anim;
     private Rigidbody rb3d;
     private Camera_Controller camControl;
+    private bool hasCamControl = true;
     //Variables
     //Camera World View
     private Vector3 forward;
@@ -27,7 +28,7 @@ public class Player_Movement : MonoBehaviour
         rb3d = GetComponent<Rigidbody>();
 
         //Get and Setup Camera to Follow
-        SetupCamera();
+        hasCamControl = SetupCamera();
         inControl = true;
     }
 
@@ -51,11 +52,16 @@ public class Player_Movement : MonoBehaviour
 
     }
 
-    private void SetupCamera()
+    private bool SetupCamera()
     {
         camControl = FindObjectOfType<Camera_Controller>();
+        //Escape if no controller in scene (static cam)
+        if(camControl == null)
+            return false;
+
         camControl.TargetObject(this.gameObject);
 
+        //Set the Vector forwards to be that of the camera
         forward = camControl.transform.forward;
         right = camControl.transform.right;
 
@@ -63,6 +69,8 @@ public class Player_Movement : MonoBehaviour
         right.y = 0;
         forward.Normalize();
         right.Normalize();
+
+        return true;
 
     }
 

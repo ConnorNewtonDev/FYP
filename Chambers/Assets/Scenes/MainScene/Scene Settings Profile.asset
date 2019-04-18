@@ -117,7 +117,7 @@ MonoBehaviour:
     m_Value: 0
   multiplier:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.36
     min: 0
   upperHemisphereLuxValue:
     m_OverrideState: 1
@@ -152,19 +152,19 @@ MonoBehaviour:
     min: 0
     max: 5
   skyTint:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 0.3726415, b: 0.85454834, a: 1}
+    m_OverrideState: 0
+    m_Value: {r: 0.6415094, g: 0, b: 0.03308138, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
   groundColor:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.48719597, b: 0.6132076, a: 1}
+    m_Value: {r: 0, g: 1, b: 0.95938826, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
   enableSunDisk:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
 --- !u!114 &114432450432618396
 MonoBehaviour:
