@@ -5,18 +5,23 @@ using UnityEngine;
 public class CubeTarget : MonoBehaviour
 {
     // Start is called before the first frame update
+    private bool isFilled = false;
     void Start()
     {
         
     }
 
-    void OnTriggerEnter(Collider other)
+    public bool GetFilledState() {return isFilled;}
+    void OnTriggerStay(Collider other)
     {
         if(other.tag == "Interactable")
         {
-
-            CheckPosition(other.transform.position);
-            CheckPosition(other.transform.position, 5.0f);
+            if(CheckPosition(other.transform.position))
+            {
+                isFilled = true;
+                other.tag = "Untagged";                
+                FindObjectOfType<ChallengeThree>().OpenDoor();
+            }
         }
     }
 

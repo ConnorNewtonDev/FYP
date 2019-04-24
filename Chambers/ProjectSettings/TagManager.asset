@@ -8,6 +8,7 @@ TagManager:
   - DestroyObj
   - DestroyPlayer
   - Rebound
+  - CubeTarget
   layers:
   - Default
   - TransparentFX

@@ -6,12 +6,12 @@ public class ChallengeBase : MonoBehaviour
     public Transform playerSpawn;
     [SerializeField]
     public GameManager gM;
+    public bool cameraStatic = false;
 
 
     public virtual void Start()
     {
         gM = FindObjectOfType<GameManager>();
-        gM.cameraController = FindObjectOfType<Camera_Controller>();
     }
 
     public bool GetHardMode(int index)

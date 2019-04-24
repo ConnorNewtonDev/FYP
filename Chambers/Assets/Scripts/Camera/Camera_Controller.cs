@@ -25,8 +25,8 @@ public class Camera_Controller : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (target != null)
-        this.transform.position = Vector3.Lerp(this.transform.position, (target.position - offset), dampening);
+        if (!this.gameObject.isStatic)
+            this.transform.position = Vector3.Lerp(this.transform.position, (target.position - offset), dampening);
     }
 
     //Target the camera onto an object.
@@ -35,6 +35,15 @@ public class Camera_Controller : MonoBehaviour
         target = _target.transform;
         this.transform.rotation = Quaternion.Euler(defaultRot);
     }
+
+    public bool GetStatic()
+    {
+        if(this.gameObject.isStatic)
+            return true;
+        else
+            return false;
+    }
+
     public IEnumerator FadeUI(GameObject _panel, float _alphaStart, float _alphaFinish)
     {
         CanvasGroup panelCG = _panel.GetComponent<CanvasGroup>();

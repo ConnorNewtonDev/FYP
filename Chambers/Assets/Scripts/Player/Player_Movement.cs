@@ -56,21 +56,25 @@ public class Player_Movement : MonoBehaviour
     {
         camControl = FindObjectOfType<Camera_Controller>();
         //Escape if no controller in scene (static cam)
-        if(camControl == null)
-            return false;
+        if(camControl.GetStatic())
+        {
+                return false;
+        }
+        else
+        {
+            camControl.TargetObject(this.gameObject);
 
-        camControl.TargetObject(this.gameObject);
+            //Set the Vector forwards to be that of the camera
+            forward = camControl.transform.forward;
+            right = camControl.transform.right;
 
-        //Set the Vector forwards to be that of the camera
-        forward = camControl.transform.forward;
-        right = camControl.transform.right;
+            forward.y = 0;
+            right.y = 0;
+            forward.Normalize();
+            right.Normalize();
 
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        return true;
+            return true;
+        }       
 
     }
 

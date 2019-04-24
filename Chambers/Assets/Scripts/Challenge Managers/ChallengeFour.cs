@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChallengeThree : ChallengeBase
+public class ChallengeFour : ChallengeBase
 {
     private List<GameObject> targets;
     
@@ -14,23 +14,34 @@ public class ChallengeThree : ChallengeBase
     {
         base.Start();
 
-        //if (base.GetHardMode(2))
-        //    Instantiate(hardmodeLayout, this.transform.position, this.transform.rotation);
-        //else
-        //    Instantiate(standardLayout, this.transform.position, this.transform.rotation);
+        // if(base.GetHardMode(2))
+        //     Instantiate(hardmodeLayout, this.transform.position,this.transform.rotation);
+        // else
+        //     Instantiate(standardLayout, this.transform.position,this.transform.rotation);
 
-        targets = new List<GameObject>(GameObject.FindGameObjectsWithTag("CubeTarget"));
+        Instantiate(hardmodeLayout, this.transform.position, this.transform.rotation);
         exit = GameObject.FindGameObjectWithTag("Finish");
         base.cameraStatic = true;
 
     }
 
+    void Update()
+    {
+
+    }
+
+    private void LoadHardMode()
+    {
+        
+    }
+
+    private void LoadStandard()
+    {
+        
+    }
+
     public void OpenDoor()          //Check if all blocks in place, if so continue to open door.          
     {
-        foreach(GameObject item in targets)
-        {
-            if(!item.GetComponent<CubeTarget>().GetFilledState())  { return; }
-        }
 
         exit.SetActive(false);
         Debug.Log("Door Open");
