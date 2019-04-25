@@ -4,40 +4,75 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
-
-    public float scanDist;
     public float scanSpeed;
-
-    private bool moveRight = true;
+    public float scanAngle;
+    public float waitTime;
     private Quaternion targetRot;
     private Quaternion initRot;
+    public float elapsedTime = 0.0f;
+
+    public enum STATE { AT_START, IN_PROGRESS, AT_TARGET, WAITING}
+    public STATE cameraState = STATE.AT_START;
     // Start is called before the first frame update
     void Start()
     {
-        initRot = this.transform.rotation;
-        targetRot = this.transform.rotation;
-        targetRot.y += scanDist / 2;
+        initRot = transform.rotation;
+        targetRot = Quaternion.Euler(new Vector3(initRot.x, initRot.y + scanAngle, initRot.z));
     }
 
     // Update is called once per frame
     void Update()
     {
-        Scan();
-
-        
-    }
-
-    private void Scan()
-    {
-        if (Quaternion.Angle(initRot, transform.rotation) >= Quaternion.Angle(initRot, targetRot))
+        switch(cameraState)
         {
-            if (moveRight)
-                targetRot.y -= scanDist;
-            else
-                targetRot.y += scanDist;
-
-            moveRight = !moveRight;
-        }
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.time * scanSpeed);
+            case STATE.AT_START:
+            {
+                StopAllCoroutines();
+                StartCoroutine(Scan(initRot, targetRot, STATE.WAITING));
+                break;
+            }
+            case STATE.IN_PROGRESS:
+                break;
+            case STATE.AT_TARGET:
+            {
+                StopAllCoroutines();
+                StartCoroutine(Scan(targetRot, initRot, STATE.WAITING));
+                break;
+            }
+            case STATE.WAITING:
+            {
+                StopAllCoroutines();
+                if (transform.rotation == initRot)
+                    StartCoroutine(Wait(STATE.AT_START));
+                else
+                    StartCoroutine(Wait(STATE.AT_TARGET));
+                break;
+            }        
+        }       
     }
+
+    private IEnumerator Wait(STATE endState)
+    {
+        cameraState = STATE.IN_PROGRESS;
+        yield return new WaitForSeconds(waitTime);
+        cameraState = endState;
+    }
+
+    private IEnumerator Scan(Quaternion start, Quaternion end, STATE endState)
+    {
+        cameraState = STATE.IN_PROGRESS;
+
+        elapsedTime = 0.0f;
+
+        while (elapsedTime < scanSpeed)
+        {
+            transform.rotation = Quaternion.Slerp(start, end, (elapsedTime / scanSpeed));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = end;
+        cameraState = endState;
+    }
+      
 }

@@ -227,5 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763cf7c60edcc2345b41be6613bd8d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanDist: 0
-  scanSpeed: 0
+  scanSpeed: 5
+  scanAngle: 180
+  waitTime: 2
+  elapsedTime: 0
+  cameraState: 0
