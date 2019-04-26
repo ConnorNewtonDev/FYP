@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
             case "DestroyPlayer":
                     DestroySequence();
                     break;
+            case "Finish":
+                gM.FinishedLevel();
+                break;
 
         }
     }
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour
         }
     }
 #endregion
-  
+
     private void DestroySequence()
     {
         pMovement.inControl = false;

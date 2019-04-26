@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
     public bool[] hardmodeChoice = new bool[5];
+    public int[] finalLife = new int[5];
     public int activeChallenge = 0;
     public GameObject playerPrefab;
     public Camera_Controller cameraController;
@@ -32,10 +33,25 @@ public class GameManager : MonoBehaviour
         life = 3;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+            FinishedLevel();
+    }
+
+
+    public void FinishedLevel()
+    {
+        finalLife[activeChallenge - 1] = life; //Life of level just completed
+        LoadScene(0);
+    }
+
     public void LoadNextScene(bool hardMode)
     {
         hardmodeChoice[activeChallenge] = hardMode;
-        SceneManager.LoadScene(activeChallenge + 1);        //+1 to account for build order
+        life = 3;
+        activeChallenge += 1;
+        SceneManager.LoadScene(activeChallenge);
     }  
 
     public void ReloadScene()
