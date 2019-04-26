@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
         pMovement.DeathScreen();
         this.transform.GetComponent<CapsuleCollider>().enabled = false;
         this.GetComponent<AudioSource>().Play();
-        Destroy(this.gameObject, 1f);                              //Delete player behind screen
 
         if (gM.life == 1)
         {          
@@ -91,7 +90,8 @@ public class Player : MonoBehaviour
         else
         {
             gM.life -= 1;
-            FindObjectOfType<ChallengeBase>().Spawn(2.5f);
+            //gM.ReloadScene();
+            gM.StartCoroutine(FindObjectOfType<ChallengeBase>().Spawn(1f));
         }
 
 

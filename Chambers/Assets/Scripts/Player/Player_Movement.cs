@@ -55,6 +55,10 @@ public class Player_Movement : MonoBehaviour
     private bool SetupCamera()
     {
         camControl = FindObjectOfType<Camera_Controller>();
+
+        if (camControl.deathPanel.activeInHierarchy)
+            StartCoroutine(camControl.FadeUI(camControl.deathPanel, 1f, 0f));
+
         //Escape if no controller in scene (static cam)
         if(camControl.GetStatic())
         {
@@ -115,6 +119,9 @@ public class Player_Movement : MonoBehaviour
 
     public void DeathScreen()
     {
+        if (camControl.deathPanel == null)
+            camControl.deathPanel = GameObject.Find("Death Panel");
+
         GameObject panel = camControl.deathPanel;
         camControl.StartCoroutine(camControl.FadeUI(panel, 0, 1));
     }

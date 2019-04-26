@@ -12,9 +12,9 @@ public class Camera_Controller : MonoBehaviour
 
     //UI PANELS
     private GameObject uiPanel;
-    public GameObject deathPanel { get;  private set; }
+    public GameObject deathPanel;
 
-    private void Start()
+    private void Awake()
     {
         //SetupPanels
         deathPanel = GameObject.Find("Death Panel");
@@ -25,7 +25,7 @@ public class Camera_Controller : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!this.gameObject.isStatic)
+        if (!this.gameObject.isStatic && target != null)
             this.transform.position = Vector3.Lerp(this.transform.position, (target.position - offset), dampening);
     }
 
