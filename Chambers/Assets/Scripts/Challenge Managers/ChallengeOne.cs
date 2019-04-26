@@ -15,6 +15,7 @@ public class ChallengeOne : ChallengeBase
     {           
         base.Start();
         
+
         if (base.GetHardMode(1))
             LoadHardPath();
         else

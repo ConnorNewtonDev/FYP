@@ -14,10 +14,10 @@ public class ChallengeThree : ChallengeBase
     {
         base.Start();
 
-        //if (base.GetHardMode(2))
-        //    Instantiate(hardmodeLayout, this.transform.position, this.transform.rotation);
-        //else
-        //    Instantiate(standardLayout, this.transform.position, this.transform.rotation);
+        if (base.GetHardMode(2))
+            Instantiate(hardmodeLayout, this.transform.position, this.transform.rotation);
+        else
+            Instantiate(standardLayout, this.transform.position, this.transform.rotation);
 
         targets = new List<GameObject>(GameObject.FindGameObjectsWithTag("CubeTarget"));
         exit = GameObject.FindGameObjectWithTag("Finish");

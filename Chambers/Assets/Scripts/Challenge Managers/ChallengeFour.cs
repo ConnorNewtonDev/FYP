@@ -5,11 +5,11 @@ using UnityEngine;
 public class ChallengeFour : ChallengeBase
 {
     private List<GameObject> targets;
-    
+
     private GameObject exit;
     public GameObject standardLayout;
     public GameObject hardmodeLayout;
- 
+
     public override void Start()
     {
         base.Start();
@@ -32,12 +32,12 @@ public class ChallengeFour : ChallengeBase
 
     private void LoadHardMode()
     {
-        
+
     }
 
     private void LoadStandard()
     {
-        
+
     }
 
     public void OpenDoor()          //Check if all blocks in place, if so continue to open door.          
@@ -45,6 +45,11 @@ public class ChallengeFour : ChallengeBase
 
         exit.SetActive(false);
         Debug.Log("Door Open");
+    }
+
+    public void PickupCollected()
+    {
+
     }
 
 }

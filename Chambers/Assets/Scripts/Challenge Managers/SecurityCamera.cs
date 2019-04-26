@@ -7,17 +7,17 @@ public class SecurityCamera : MonoBehaviour
     public float scanSpeed;
     public float scanAngle;
     public float waitTime;
-    private Quaternion targetRot;
-    private Quaternion initRot;
+    private Vector3 targetRot;
+    private Vector3 initRot;
     public float elapsedTime = 0.0f;
 
-    public enum STATE { AT_START, IN_PROGRESS, AT_TARGET, WAITING}
+    public enum STATE { AT_START, IN_PROGRESS, AT_TARGET, WAITING, SPINNING}
     public STATE cameraState = STATE.AT_START;
     // Start is called before the first frame update
     void Start()
     {
-        initRot = transform.rotation;
-        targetRot = Quaternion.Euler(new Vector3(initRot.x, initRot.y + scanAngle, initRot.z));
+        initRot = transform.eulerAngles;
+        targetRot = new Vector3(initRot.x, initRot.y + scanAngle, initRot.z);
     }
 
     // Update is called once per frame
@@ -42,12 +42,17 @@ public class SecurityCamera : MonoBehaviour
             case STATE.WAITING:
             {
                 StopAllCoroutines();
-                if (transform.rotation == initRot)
+                if (transform.eulerAngles == initRot)
                     StartCoroutine(Wait(STATE.AT_START));
                 else
                     StartCoroutine(Wait(STATE.AT_TARGET));
                 break;
-            }        
+            }
+            case STATE.SPINNING:
+            {
+                    this.transform.Rotate(0, scanSpeed * Time.deltaTime, 0);
+                    break;
+            }
         }       
     }
 
@@ -58,7 +63,7 @@ public class SecurityCamera : MonoBehaviour
         cameraState = endState;
     }
 
-    private IEnumerator Scan(Quaternion start, Quaternion end, STATE endState)
+    private IEnumerator Scan(Vector3 start, Vector3 end, STATE endState)
     {
         cameraState = STATE.IN_PROGRESS;
 
@@ -66,13 +71,14 @@ public class SecurityCamera : MonoBehaviour
 
         while (elapsedTime < scanSpeed)
         {
-            transform.rotation = Quaternion.Slerp(start, end, (elapsedTime / scanSpeed));
+            //transform.rotation = Quaternion.Slerp(start, end, (elapsedTime / scanSpeed));
+            transform.eulerAngles = Vector3.Lerp(start, end, (elapsedTime / scanSpeed));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        transform.rotation = end;
+        transform.eulerAngles = end;
         cameraState = endState;
     }
-      
+
 }
