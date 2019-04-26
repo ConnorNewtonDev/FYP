@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Challenge 1.unity
     guid: 03459cb879bd7f84993a77ea788980a9
   - enabled: 1
+    path: Assets/Scenes/Challenge 2.unity
+    guid: f7823bf8ad356f74d83ccb914a00d77a
+  - enabled: 1
     path: Assets/Scenes/Challenge 3.unity
     guid: 2d68612bd9e890e4ba161e34b0bd203e
   - enabled: 1

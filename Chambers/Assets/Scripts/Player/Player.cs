@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
         pMovement = GetComponent<Player_Movement>();
         gM = FindObjectOfType<GameManager>();
 
+
+
     }
 
     void Update()

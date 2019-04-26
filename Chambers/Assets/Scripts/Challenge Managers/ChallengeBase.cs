@@ -25,9 +25,7 @@ public class ChallengeBase : MonoBehaviour
         player.name = "Player";
         player.GetComponent<Player>().gM = this.GetComponent<GameManager>();
         //Check if respawning & death panel still active
-        gM.cameraController.StopAllCoroutines();
-        Debug.Log("Stopped");
-        gM.cameraController.StartCoroutine(gM.cameraController.FadeUI(gM.cameraController.deathPanel, 1, 0));
+
         
     }
 }
