@@ -64,8 +64,13 @@ public class EnemySpawner : MonoBehaviour
     private void EnemyDeathEvent(int val, GameObject obj)
     {
         remainingEnemies -= 1;
+
         if(remainingEnemies == 0)
-            FindObjectOfType<GameManager>().FinishedLevel(6);
+        {
+            FindObjectOfType<GameManager>().FinishedLevel(6, true);
+        }
+
+
     }
 
     public void StartSpawning()

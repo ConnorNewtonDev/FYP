@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
                     DestroySequence();
                     break;
             case "Finish":
-                    gM.FinishedLevel(0);
+                    gM.FinishedLevel(7, false);
                     break;
 
         }
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         this.transform.GetComponent<CapsuleCollider>().enabled = false;
         this.GetComponent<AudioSource>().Play();
 
-        gM.FailedLevel(0);       
+        gM.FailedLevel(7);       
 
     }
 

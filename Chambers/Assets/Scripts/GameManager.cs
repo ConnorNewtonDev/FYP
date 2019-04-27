@@ -33,15 +33,11 @@ public class GameManager : MonoBehaviour
         life = 3;
     }
 
-    private void Update()
+    public void FinishedLevel(int nextSceneIndex, bool shouldSave)
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            FinishedLevel(0);
-    }
-
-
-    public void FinishedLevel(int nextSceneIndex)
-    {
+        if(shouldSave == true)
+            GetComponent<DataCollector>().SaveGameData(this);
+            
         finalLife[activeChallenge - 1] = life; //Life of level just completed
         LoadScene(nextSceneIndex);
     }
@@ -77,5 +73,11 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
+    }
+
+    public void BeginGame()
+    {
+        GetComponent<DataCollector>().SaveFormScene();
+        LoadScene(7);
     }
 }
