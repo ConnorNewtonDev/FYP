@@ -36,23 +36,23 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
-            FinishedLevel();
+            FinishedLevel(0);
     }
 
 
-    public void FinishedLevel()
+    public void FinishedLevel(int nextSceneIndex)
     {
         finalLife[activeChallenge - 1] = life; //Life of level just completed
-        LoadScene(0);
+        LoadScene(nextSceneIndex);
     }
 
-    public void FailedLevel()
+    public void FailedLevel(int nextSceneIndex)
     {
            if (life == 1)
         {          
             life -= 1;
             //Reload --- still to decide here what to do
-            LoadScene(0);
+            LoadScene(nextSceneIndex);
         }
         else
         {

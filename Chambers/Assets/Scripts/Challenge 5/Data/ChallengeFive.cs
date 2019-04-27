@@ -24,6 +24,6 @@ public class ChallengeFive : ChallengeBase
 
     public void FailedLevel()
     {
-        gM.FailedLevel();
+        gM.FailedLevel(6);
     }
 }

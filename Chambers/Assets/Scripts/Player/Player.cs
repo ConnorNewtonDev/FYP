@@ -43,8 +43,8 @@ public class Player : MonoBehaviour
                     DestroySequence();
                     break;
             case "Finish":
-                gM.FinishedLevel();
-                break;
+                    gM.FinishedLevel(0);
+                    break;
 
         }
     }
@@ -86,20 +86,7 @@ public class Player : MonoBehaviour
         this.transform.GetComponent<CapsuleCollider>().enabled = false;
         this.GetComponent<AudioSource>().Play();
 
-        if (gM.life == 1)
-        {          
-            gM.life -= 1;
-            //Reload --- still to decide here what to do
-            gM.LoadScene(0);
-        }
-        else
-        {
-            gM.life -= 1;
-            //gM.ReloadScene();
-            gM.StartCoroutine(FindObjectOfType<ChallengeBase>().Spawn(1f));
-        }
-
-        
+        gM.FailedLevel(0);       
 
     }
 

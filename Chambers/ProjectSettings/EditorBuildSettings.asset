@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Challenge 5.unity
     guid: bd6008787f8493f45affa6675d08903d
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: d68eeeaa47a9bea4ebbef4b30eae01e4
   m_configObjects: {}

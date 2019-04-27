@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
     {
         remainingEnemies -= 1;
         if(remainingEnemies == 0)
-            FindObjectOfType<GameManager>().FinishedLevel();
+            FindObjectOfType<GameManager>().FinishedLevel(6);
     }
 
     public void StartSpawning()
