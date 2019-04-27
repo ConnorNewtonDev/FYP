@@ -25,6 +25,15 @@ public class ChallengeThree : ChallengeBase
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            gM.life -= 1;
+            gM.ReloadScene();
+        }
+    }
+
     public void OpenDoor()          //Check if all blocks in place, if so continue to open door.          
     {
         foreach(GameObject item in targets)

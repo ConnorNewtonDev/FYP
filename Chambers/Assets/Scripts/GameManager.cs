@@ -46,6 +46,21 @@ public class GameManager : MonoBehaviour
         LoadScene(0);
     }
 
+    public void FailedLevel()
+    {
+           if (life == 1)
+        {          
+            life -= 1;
+            //Reload --- still to decide here what to do
+            LoadScene(0);
+        }
+        else
+        {
+            life -= 1;
+            ReloadScene();
+        }
+    }
+
     public void LoadNextScene(bool hardMode)
     {
         hardmodeChoice[activeChallenge] = hardMode;

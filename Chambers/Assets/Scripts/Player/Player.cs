@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
             gM.StartCoroutine(FindObjectOfType<ChallengeBase>().Spawn(1f));
         }
 
-
+        
 
     }
 

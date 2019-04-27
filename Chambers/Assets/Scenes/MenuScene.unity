@@ -897,7 +897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hardmodeChoice: 0000000000
   finalLife: 0000000000000000000000000000000000000000
-  activeChallenge: 0
+  activeChallenge: 4
   playerPrefab: {fileID: 2899405459254772754, guid: bf3a9dd8c2c726543a27fe283bebfaa9,
     type: 3}
   cameraController: {fileID: 0}
