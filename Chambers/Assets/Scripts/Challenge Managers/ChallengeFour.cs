@@ -5,22 +5,24 @@ using UnityEngine;
 public class ChallengeFour : ChallengeBase
 {
     private List<GameObject> targets;
-
-    private GameObject exit;
+    private GameObject hardmodeDoor;
     public GameObject standardLayout;
     public GameObject hardmodeLayout;
+    private int pickups;
 
     public override void Start()
     {
         base.Start();
 
-        // if(base.GetHardMode(2))
-        //     Instantiate(hardmodeLayout, this.transform.position,this.transform.rotation);
-        // else
-        //     Instantiate(standardLayout, this.transform.position,this.transform.rotation);
+        if(base.GetHardMode(2))
+        {
+            Debug.Log("HardMode");
+            Instantiate(hardmodeLayout, this.transform.position,this.transform.rotation);
+            hardmodeDoor = GameObject.Find("Exit");
+        }
+        else
+            Instantiate(standardLayout, this.transform.position,this.transform.rotation);
 
-        Instantiate(hardmodeLayout, this.transform.position, this.transform.rotation);
-        exit = GameObject.FindGameObjectWithTag("Finish");
         base.cameraStatic = true;
 
     }
@@ -29,27 +31,10 @@ public class ChallengeFour : ChallengeBase
     {
 
     }
-
-    private void LoadHardMode()
-    {
-
-    }
-
-    private void LoadStandard()
-    {
-
-    }
-
-    public void OpenDoor()          //Check if all blocks in place, if so continue to open door.          
-    {
-
-        exit.SetActive(false);
-        Debug.Log("Door Open");
-    }
-
     public void PickupCollected()
     {
-
+        pickups -= 1;
+        if(pickups == 0)
+            hardmodeDoor.SetActive(false);
     }
-
 }

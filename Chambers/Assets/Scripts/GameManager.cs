@@ -33,6 +33,15 @@ public class GameManager : MonoBehaviour
         life = 3;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            FinishedLevel(7, false);
+        }
+    }
+
+
     public void FinishedLevel(int nextSceneIndex, bool shouldSave)
     {
         if(shouldSave == true)

@@ -46,7 +46,7 @@ public class DataCollector : MonoBehaviour
     {
         string dataAsJson = JsonUtility.ToJson (playerData);
 
-        string filePath = Application.dataPath + "Report/";
+        string filePath = Application.dataPath + "/Report";
         File.WriteAllText (filePath, dataAsJson);
 
         Debug.Log("Data Stored");
