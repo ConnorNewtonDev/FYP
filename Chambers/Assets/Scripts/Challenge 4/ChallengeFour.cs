@@ -14,7 +14,7 @@ public class ChallengeFour : ChallengeBase
     {
         base.Start();
 
-        if(base.GetHardMode(2))
+        if(base.GetHardMode(4))
         {
             Debug.Log("HardMode");
             Instantiate(hardmodeLayout, this.transform.position,this.transform.rotation);

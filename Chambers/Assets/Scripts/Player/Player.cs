@@ -41,9 +41,8 @@ public class Player : MonoBehaviour
                     break;
             case "DestroyPlayer":
                 {
-                    if(CheckInSight(other.transform.position))               
-                        DestroySequence();
-
+                    if(CheckInSight(new Vector3(0,0f,0), other.transform))               
+                          DestroySequence();
                     break;
                 }
 
@@ -54,14 +53,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "DestroyPlayer")
+            if(CheckInSight(new Vector3(0,0f,0), other.transform))               
+                DestroySequence();
+    }
 
-    private bool CheckInSight(Vector3 otherPos)
+
+    private bool CheckInSight(Vector3 modifier, Transform otherPos)
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(otherPos, (transform.position - otherPos), out hit, Mathf.Infinity))
+        Vector3 target = otherPos.GetChild(0).position;
+        float distance = Vector3.Distance(transform.position, target);
+
+        Debug.Log(otherPos.GetChild(0).name);
+        if(Physics.Raycast(transform.position, (target - transform.position), out hit, distance))
             {
-                if(hit.transform.tag == "Player")
+                if(hit.transform.tag == "DestroyPlayer")
                 {
                     // Is Visible
                     Debug.Log("IsVisible");

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1922893353715269774}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: DestroyPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 7329915786303203520}
   - component: {fileID: 2711525096415286156}
   - component: {fileID: 7935160292975992568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SecurityCamera
   m_TagString: DestroyPlayer
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private DataCollector data;
     public bool[] hardmodeChoice = new bool[5];
     public int[] finalLife = new int[5];
-    public int[] bonusStars = new int[5];
+    public int[] bonusPts = new int[5];
     public int activeChallenge = 0;
     public GameObject playerPrefab;
     public Camera_Controller cameraController;
@@ -36,14 +36,21 @@ public class GameManager : MonoBehaviour
         life = 3;
     }
 
-    void Update()
+    public int GetFinalPoints()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        int sum = 0;
+        foreach(int val in finalLife)
         {
-            FinishedLevel(7, false);
+            sum += val;
         }
-    }
+        foreach(int val in bonusPts)
+        {
+            sum += val;
+        }
 
+        return sum;
+
+    }
 
     public void FinishedLevel(int nextSceneIndex, bool shouldSave)
     {            
@@ -63,28 +70,28 @@ public class GameManager : MonoBehaviour
     {
         case 1:
             if(hardmodeChoice[activeChallenge - 1] == true)
-                bonusStars[activeChallenge -1] = 1;            
+                bonusPts[activeChallenge -1] = 1;            
             break;
         case 2:
-            bonusStars[activeChallenge -1] = 0;            
+            bonusPts[activeChallenge -1] = 0;            
             break;
         case 3:
             if(hardmodeChoice[activeChallenge - 1] == true)
                 if(life == 3)
-                    bonusStars[activeChallenge -1] = 2;            
+                    bonusPts[activeChallenge -1] = 2;            
                 else
-                    bonusStars[activeChallenge -1] = -1;
+                    bonusPts[activeChallenge -1] = -1;
             break;  
         case 4:
             if(hardmodeChoice[activeChallenge - 1] == true)
-                bonusStars[activeChallenge -1] = 4;            
+                bonusPts[activeChallenge -1] = 4;            
             break;            
         case 5:
             if(hardmodeChoice[activeChallenge - 1] == true)
                 if(life == 3)
-                    bonusStars[activeChallenge -1] = 1;            
+                    bonusPts[activeChallenge -1] = 3;            
                 else
-                    bonusStars[activeChallenge -1] = -2;       
+                    bonusPts[activeChallenge -1] = -3;       
             break;
     }
     }
@@ -127,4 +134,7 @@ public class GameManager : MonoBehaviour
         GetComponent<DataCollector>().SaveFormScene();
         LoadScene(7);
     }
+
+    
+
 }

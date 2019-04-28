@@ -9,10 +9,10 @@ public class DataCollector : MonoBehaviour
 {
     // Start is called before the first frame update
     private bool dataRights = false;
-    private int[] sliderData = new int[12];
+    private int[] sliderData = new int[8];
     private PlayerData playerData;
 
-    public Slider[] sliders = new Slider[12];
+    public Slider[] sliders = new Slider[8];
 
 
     // This function could be extended easily to handle any additional data we wanted to store in our PlayerProgress object
@@ -46,7 +46,7 @@ public class DataCollector : MonoBehaviour
     {
         string dataAsJson = JsonUtility.ToJson (playerData);
 
-        string filePath = Application.dataPath + "/Report";
+        string filePath = Application.dataPath + "/Report.data";
         File.WriteAllText (filePath, dataAsJson);
 
         Debug.Log("Data Stored");

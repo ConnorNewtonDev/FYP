@@ -77,19 +77,19 @@ public class TextController : MonoBehaviour
         switch(gM.activeChallenge)
         {
             case 0:
-                output = "+1 Bonus Star";
+                output = "+1 Bonus Point";
                 break;
             case 1:
                 output = "NO BONUS";
                 break;
             case 2: 
-                output = "+2 Bonus Star's if completed first try, otherwise -1 Bonus Star's";
+                output = "+2 Bonus Points if completed first try, otherwise -1 Bonus Points";
                 break;
             case 3:
-                output = "+4 Bonus Star's";
+                output = "+4 Bonus Points";
                 break;
             case 4:
-                output = "+1 Bonus Star's if completed first try, otherwise -2 Bonus Star's";
+                output = "+1 Bonus Points if completed first try, otherwise -2 Bonus Points";
                 break;
         }
         return output;

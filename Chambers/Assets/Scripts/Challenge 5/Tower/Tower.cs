@@ -63,20 +63,24 @@ public class Tower : MonoBehaviour
 
     private void DetectTouch()
     {
-        RaycastHit hit; 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);             
-        if ( Physics.Raycast (ray,out hit,100.0f)) 
+
+        if(Input.GetMouseButtonDown(1))
         {
-            if(Input.GetMouseButtonDown(0) && hit.transform == this.transform)
-            {
-                ToggleOptions();
-            }
-        }  
+            RaycastHit hit; 
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);            
+            
+            if ( Physics.Raycast (ray,out hit,100.0f)) 
+                {
+                    if(hit.transform == this.transform)
+                        Destroy();              
+                }
+        } 
+
     }
    
    private void HandleAttack()
    {
-       if(fireDelay < 0.0f)
+       if(fireDelay < 0.0f && placed)
        {
         if(inRange.Count > 0)
             {

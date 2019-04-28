@@ -26,12 +26,6 @@ public class PlayerData : MonoBehaviour
         currencyText.text = Currency.ToString();
     }
 
-
-    public void TEMPAddCurrencyBtn()
-    {
-        AdjustCurrency(true, 50);
-    }
-
     public void OnEnemyKilled(int val, GameObject obj)
     {
         AdjustCurrency(true, val);        

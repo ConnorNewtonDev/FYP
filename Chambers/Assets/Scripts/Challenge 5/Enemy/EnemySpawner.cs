@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> nodes = new List<Transform>();
     public List<SpawnListItem> spawns = new List<SpawnListItem>(15);
     public GameObject enemyPrefab;
-    public GameObject spawnParent;
+    private GameObject spawnParent;
     private float spawnDelay = 3;
     private Vector3 spawnPoint;
     private PlayerData pData;
@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         path = GameObject.Find("Path").transform;
+        spawnParent = GameObject.Find("Enemies");
         pData = FindObjectOfType<PlayerData>();
         for(int i = 0; i < path.childCount; i++)
         {
@@ -28,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
         spawnPoint = new Vector3(nodes[0].transform.position.x, 1.5f, nodes[0].transform.position.z);
 
         remainingEnemies = spawns.Count;
+
     }
 
     // Update is called once per frame

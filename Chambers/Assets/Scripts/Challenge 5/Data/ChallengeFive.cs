@@ -11,12 +11,14 @@ public class ChallengeFive : ChallengeBase
     public override void Start()
     {
         base.Start();
-        
-        if (base.GetHardMode(2))
-            Instantiate(hardmodeLayout, pathHolder.position, pathHolder.rotation);
+        GameObject path;
+        if (base.GetHardMode(5))
+            path = Instantiate(hardmodeLayout, pathHolder.position, pathHolder.rotation);
         else
-            Instantiate(standardLayout, pathHolder.position, pathHolder.rotation);
-    
+            path = Instantiate(standardLayout, pathHolder.position, pathHolder.rotation);
+
+        path.name = "Path";
+
     }
 
     // Update is called once per frame
@@ -27,7 +29,8 @@ public class ChallengeFive : ChallengeBase
 
     public void StartEnemies()
     {
-        pathHolder.GetComponentInChildren<EnemySpawner>().isSpawning = true;
+        Debug.Log("HIT");
+        FindObjectOfType<EnemySpawner>().isSpawning = true;
     }
 
     public void FailedLevel()

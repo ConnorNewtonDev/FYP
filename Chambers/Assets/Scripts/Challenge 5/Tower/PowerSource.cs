@@ -62,11 +62,6 @@ private void HandleTowerPlacement()
     }
 }
 
-public void SpendPlayerCurrency(int value)
-{
-    player.AdjustCurrency(false, value);
-}
-
 public void TowerSpawnBtn()
 {
     if(socketTower == null)
@@ -86,6 +81,8 @@ public int UpdatePower()
     {   
         tower.GetComponent<Tower>().UpdateEnergy(newVal);
     }
+
+    UpdateUIText(newVal);  
 
     return newVal;
 }

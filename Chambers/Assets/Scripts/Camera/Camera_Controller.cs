@@ -8,7 +8,7 @@ public class Camera_Controller : MonoBehaviour
     private Transform target;
     public Vector3 offset;
     public Vector3 defaultRot;
-    private float dampening = 15f;
+    public float dampening = 0.5f;
 
     //UI PANELS
     private GameObject uiPanel;
