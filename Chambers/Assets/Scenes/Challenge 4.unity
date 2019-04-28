@@ -443,8 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2759d3ae231f841a2eaa7ca895bb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
-  defaultRot: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: -5, z: 5}
+  defaultRot: {x: 45, y: 0, z: 0}
   deathPanel: {fileID: 0}
 --- !u!114 &273547827
 MonoBehaviour:

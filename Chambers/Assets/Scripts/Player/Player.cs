@@ -40,13 +40,37 @@ public class Player : MonoBehaviour
                     interactEvent += other.GetComponent<Interactable>().Action;
                     break;
             case "DestroyPlayer":
-                    DestroySequence();
+                {
+                    if(CheckInSight(other.transform.position))               
+                        DestroySequence();
+
                     break;
+                }
+
             case "Finish":
                     gM.FinishedLevel(7, false);
                     break;
 
         }
+    }
+
+
+    private bool CheckInSight(Vector3 otherPos)
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(otherPos, (transform.position - otherPos), out hit, Mathf.Infinity))
+            {
+                if(hit.transform.tag == "Player")
+                {
+                    // Is Visible
+                    Debug.Log("IsVisible");
+                    return true;
+                }
+            }
+
+        Debug.Log("Isn't Visible");
+        return false;
     }
 
     private void OnTriggerExit(Collider other)

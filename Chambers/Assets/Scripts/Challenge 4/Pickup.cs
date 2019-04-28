@@ -14,7 +14,11 @@ public class Pickup : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            Debug.Log("HIT");
             FindObjectOfType<ChallengeFour>().PickupCollected();
+
+            
+            Destroy(this.gameObject);
         }
     }
 }

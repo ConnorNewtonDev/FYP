@@ -8,7 +8,7 @@ public class ChallengeFour : ChallengeBase
     private GameObject hardmodeDoor;
     public GameObject standardLayout;
     public GameObject hardmodeLayout;
-    private int pickups;
+    private int pickups = 4;
 
     public override void Start()
     {
@@ -36,5 +36,6 @@ public class ChallengeFour : ChallengeBase
         pickups -= 1;
         if(pickups == 0)
             hardmodeDoor.SetActive(false);
+
     }
 }

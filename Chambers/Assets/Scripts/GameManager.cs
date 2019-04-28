@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
+    private DataCollector data;
     public bool[] hardmodeChoice = new bool[5];
     public int[] finalLife = new int[5];
+    public int[] bonusStars = new int[5];
     public int activeChallenge = 0;
     public GameObject playerPrefab;
     public Camera_Controller cameraController;
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {     
+        data =  GetComponent<DataCollector>();
         cameraController = Camera.main.GetComponent<Camera_Controller>();
         life = 3;
     }
@@ -43,12 +46,47 @@ public class GameManager : MonoBehaviour
 
 
     public void FinishedLevel(int nextSceneIndex, bool shouldSave)
-    {
-        if(shouldSave == true)
-            GetComponent<DataCollector>().SaveGameData(this);
-            
+    {            
         finalLife[activeChallenge - 1] = life; //Life of level just completed
+
+        HandleBonusRewards();
+
+        if(shouldSave == true)
+           data.SaveGameData(this);
+
         LoadScene(nextSceneIndex);
+    }
+
+    private void HandleBonusRewards()
+    {
+    switch(activeChallenge)
+    {
+        case 1:
+            if(hardmodeChoice[activeChallenge - 1] == true)
+                bonusStars[activeChallenge -1] = 1;            
+            break;
+        case 2:
+            bonusStars[activeChallenge -1] = 0;            
+            break;
+        case 3:
+            if(hardmodeChoice[activeChallenge - 1] == true)
+                if(life == 3)
+                    bonusStars[activeChallenge -1] = 2;            
+                else
+                    bonusStars[activeChallenge -1] = -1;
+            break;  
+        case 4:
+            if(hardmodeChoice[activeChallenge - 1] == true)
+                bonusStars[activeChallenge -1] = 4;            
+            break;            
+        case 5:
+            if(hardmodeChoice[activeChallenge - 1] == true)
+                if(life == 3)
+                    bonusStars[activeChallenge -1] = 1;            
+                else
+                    bonusStars[activeChallenge -1] = -2;       
+            break;
+    }
     }
 
     public void FailedLevel(int nextSceneIndex)
