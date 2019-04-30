@@ -29,8 +29,7 @@ public class ChallengeThree : ChallengeBase
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            gM.life -= 1;
-            gM.ReloadScene();
+            gM.FailedLevel(7);
         }
     }
 

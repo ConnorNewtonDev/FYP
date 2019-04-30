@@ -10,7 +10,7 @@ public class FinalScene : MonoBehaviour
     void Start()
     {
         gM = FindObjectOfType<GameManager>();
-        points.text = gM.GetFinalPoints().ToString() + "/23 points";
+        points.text = gM.GetFinalPoints().ToString() + "/25 points";
     }
 
     public void ExitGame()

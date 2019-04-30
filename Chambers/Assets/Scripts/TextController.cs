@@ -61,7 +61,7 @@ public class TextController : MonoBehaviour
                 output = "Push the blocks into the target areas...";
                 break;
             case 3:
-                output = "Quiet now, sneak through here and get the cube to get out the other side, dont be seen!";
+                output = "Quiet now, sneak through here and get the cube to get out the other side, don't be seen!";
                 break;
             case 4:
                 output = "The towers have a shared power! The more you use the weaker they become, destroy them to regain power!";
@@ -89,7 +89,7 @@ public class TextController : MonoBehaviour
                 output = "+4 Bonus Points";
                 break;
             case 4:
-                output = "+1 Bonus Points if completed first try, otherwise -2 Bonus Points";
+                output = "+3 Bonus Points if completed first try, otherwise -3 Bonus Points";
                 break;
         }
         return output;

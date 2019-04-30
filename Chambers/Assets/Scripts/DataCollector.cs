@@ -48,7 +48,9 @@ public class DataCollector : MonoBehaviour
 
         string filePath = Application.dataPath + "/Report.data";
         File.WriteAllText (filePath, dataAsJson);
-
+        
+        filePath = Application.persistentDataPath + "/Report.data";
+               File.WriteAllText (filePath, dataAsJson);
         Debug.Log("Data Stored");
     }
 
@@ -58,7 +60,7 @@ public class DataCollector : MonoBehaviour
     class PlayerData
     {
         public bool rights;
-        public string[] sliderData = new string[12];
+        public string[] sliderData = new string[9];
         public bool[] hardmodeChoice = new bool[5];
         public int[] finalLife = new int[5];
     }
